@@ -1,4 +1,4 @@
-;; @jr0cket - communiy developer > http://blog.jr0cket.co.uk/
+;; @jr0cket - community developer > http://blog.jr0cket.co.uk/
 
 ;; Lightweight clojure setup for Emacs
 ;; requires emacs24 and leiningen
@@ -8,7 +8,7 @@
 
 (require 'package)
 (add-to-list 'package-archives
-	'("marmalade" . "http://marmalade-repo.org/packages/") )
+             '("marmalade" . "http://marmalade-repo.org/packages/") )
 (package-initialize)
 
 
@@ -23,7 +23,13 @@
 	clojure-mode clojure-test-mode
         rainbow-delimiters
         ac-slime
-	markdown-mode ))
+	markdown-mode
+        popup
+        undo-tree ))
+
+;;; auto-complete only seems to work as a manual install, however that
+;;; manual install relies on popup being available
+ 
 
 (dolist (p my-packages)
   (when (not (package-installed-p p))
@@ -36,7 +42,28 @@
 ;; Global shortcut definition to fire up clojure repl and connect to it
 (global-set-key (kbd "C-c C-j") 'clojure-jack-in)
 
-;; Colour mach parens and other structure characters to make code easy to follow
+;; Colour match parens and other structure characters to make code easy to follow
 (global-rainbow-delimiters-mode)
 
+;;; Enable undo-tree for everything, so you can M - _ to redo
+(global-undo-tree-mode)
+
+
+;;; Add configuration for the auto-completion package
+
+; not sure if this loadpath is required
+;; (add-to-list 'load-path "~/.emacs.d")
+
+; (add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
+
+;;; not sure if require 'autocomplete is needed
+;;; (require 'autocomplete)
+
+;(require 'auto-complete-config)
+;(ac-config-default)
+
+
+(add-to-list 'load-path "~/.emacs.d/")
+(require 'auto-complete-config)
+(ac-config-default)
 
