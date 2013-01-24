@@ -50,20 +50,8 @@
 
 
 ;;; Add configuration for the auto-completion package
-
-; not sure if this loadpath is required
-;; (add-to-list 'load-path "~/.emacs.d")
-
-; (add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
-
-;;; not sure if require 'autocomplete is needed
-;;; (require 'autocomplete)
-
-;(require 'auto-complete-config)
-;(ac-config-default)
-
-
 (add-to-list 'load-path "~/.emacs.d/")
+(add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
 (require 'auto-complete-config)
 (ac-config-default)
 
